@@ -1,0 +1,11 @@
+// change the theme
+$theme-colors: (
+  "primary": rgb(112, 93, 252),
+  "danger": #ff4136
+);
+
+$pagination-color: rgb(112, 93, 252);
+$pagination-active-bg: rgb(112, 93, 252);
+
+// Import Bootstrap and its default variables
+@import '~bootstrap/scss/bootstrap.scss';

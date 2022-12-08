@@ -1,0 +1,21 @@
+*{
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+.hero {
+  background-color: rgb(112, 93, 252);
+  min-height: 200px;
+  height: 300;
+  padding: 50px 10px;
+  border-radius: 30px;
+  color: #fff;
+  width: 100%;
+}
+
+.cart-count {
+  position: relative;
+  top: -10px;
+  padding: 3px 5px !important;
+  left: 1px;
+}

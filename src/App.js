@@ -1,24 +1,32 @@
-import logo from './logo.svg';
-import './App.css';
+import React from 'react';
+import { Route, Routes } from 'react-router-dom';
+import Navigation from './components/Navigation';
+import AuthApi from './data/auth-api';
+import HomePage from './pages/HomePage';
+import LoginPage from './pages/LoginPage';
+import RegisterPage from './pages/RegisterPage';
+import { putAccessToken } from './utils/common';
 
 function App() {
+  const [authUser, setAuthData] = React.useState(null);
+
+  const onLoginSuccses = async (accessToken) => {
+    putAccessToken(accessToken);
+    const { data } = await AuthApi.getUserLogin();
+    setAuthData(data);
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <Navigation authUser={authUser} />
+      <main>
+        <Routes>
+          <Route path="/" element={<HomePage />} />
+          <Route path="/login" element={<LoginPage loginSuccess={onLoginSuccses} />} />
+          <Route path="/register" element={<RegisterPage loginSuccess={onLoginSuccses} />} />
+        </Routes>
+      </main>
+    </>
   );
 }
 
